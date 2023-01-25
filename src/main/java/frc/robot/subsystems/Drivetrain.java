@@ -7,16 +7,21 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class Drivetrain extends SubsystemBase {
 
   public Drivetrain() {
   }
 
-  private static final MotorController leftFrontPWMVictorSPX = new PWMVictorSPX(0);
-  private static final MotorController rightFrontPWMVictorSPX = new PWMVictorSPX(1);
-  private static final MotorController leftBackPWMVictorSPX = new PWMVictorSPX(2);
-  private static final MotorController rightBackPWMVictorSPX = new PWMVictorSPX(3);
+  private static final MotorController leftFrontPWMVictorSPX = new PWMVictorSPX(
+      Constants.MotorConstants.leftFrontMotorPort);
+  private static final MotorController rightFrontPWMVictorSPX = new PWMVictorSPX(
+      Constants.MotorConstants.rightFrontMotorPort);
+  private static final MotorController leftBackPWMVictorSPX = new PWMVictorSPX(
+      Constants.MotorConstants.leftBackMotorPort);
+  private static final MotorController rightBackPWMVictorSPX = new PWMVictorSPX(
+      Constants.MotorConstants.rightBackMotorPort);
 
   private static final MotorControllerGroup left = new MotorControllerGroup(leftFrontPWMVictorSPX,
       leftBackPWMVictorSPX);
