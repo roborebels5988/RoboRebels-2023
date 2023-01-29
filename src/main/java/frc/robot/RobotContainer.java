@@ -5,7 +5,7 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
+import frc.robot.commands.AutoCommand;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class RobotContainer {
 
-  private final Drivetrain m_Subsystem = new Drivetrain();
+  private final Drivetrain m_Drivetrain = new Drivetrain();
 
   private final CommandXboxController m_driverController = new CommandXboxController(
       OperatorConstants.kDriverControllerPort);
@@ -49,7 +49,6 @@ public class RobotContainer {
    */
 
   private void configureBindings() {
-    Object m_Subsystem;
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is
     // pressed,
@@ -63,7 +62,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An example command will be run in autonomous
-    return Autos.Auto(m_Subsystem);
+    return new AutoCommand(m_Drivetrain);
   }
 }
