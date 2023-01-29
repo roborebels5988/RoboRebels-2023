@@ -17,16 +17,14 @@ public class RobotContainer {
 
   private final Drivetrain m_Drivetrain = new Drivetrain();
 
-  private final CommandXboxController m_driverController = new CommandXboxController(
+  private final GenericHID m_driverController = new GenericHID(
       OperatorConstants.kDriverControllerPort);
 
-  private GenericHID m_xbox;
-
-  private final JoystickButton A = new JoystickButton(m_xbox, 1);
-  private final JoystickButton B = new JoystickButton(m_xbox, 2);
-
-  private final CommandXboxController m_subsystemController = new CommandXboxController(
+  private final GenericHID m_subsystemController = new GenericHID(
       OperatorConstants.kSubsystemControllerPort);
+
+  private final JoystickButton A = new JoystickButton(m_subsystemController, 1);
+  private final JoystickButton B = new JoystickButton(m_subsystemController, 2);
 
   public RobotContainer() {
     // Configure the trigger bindings
