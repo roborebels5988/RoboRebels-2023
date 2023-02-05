@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /** An example command that uses an example subsystem. */
 public class AutoCommand extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
-  private final Drivetrain m_Drivetrain;
   private Timer timer = new Timer();
 
   /**
@@ -19,10 +18,8 @@ public class AutoCommand extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public AutoCommand(Drivetrain drivetrain) {
-    m_Drivetrain = drivetrain;
+  public AutoCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(drivetrain);
   }
 
   // Called when the command is initially scheduled.
@@ -35,9 +32,9 @@ public class AutoCommand extends CommandBase {
   @Override
   public void execute() {
     if (timer.get() <= 2) { // move forward for 6 meters
-      m_Drivetrain.m_robotDrive.arcadeDrive(0.25, 0);
+      Drivetrain.m_robotDrive.arcadeDrive(0.25, 0);
     } else {
-      m_Drivetrain.m_robotDrive.arcadeDrive(0, 0);
+      Drivetrain.m_robotDrive.arcadeDrive(0, 0);
     }
   }
 

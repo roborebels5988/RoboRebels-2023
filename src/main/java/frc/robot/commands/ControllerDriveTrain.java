@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 /** An example command that uses an example subsystem. */
 public class ControllerDriveTrain extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
-  private Drivetrain m_drivetrain;
 
   private final CommandXboxController m_driverController = new CommandXboxController(
       OperatorConstants.kDriverControllerPort);
@@ -19,10 +18,8 @@ public class ControllerDriveTrain extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public void TeleCommand(Drivetrain drivetrain) {
-    m_drivetrain = drivetrain;
+  public void TeleCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(drivetrain);
   }
 
   // Called when the command is initially scheduled.
@@ -35,10 +32,10 @@ public class ControllerDriveTrain extends CommandBase {
   public void execute() {
     if (m_driverController.getHID().getYButton()) {
       // about half speed
-      m_drivetrain.m_robotDrive.arcadeDrive(m_driverController.getLeftX() * 0.68, m_driverController.getLeftY() * 0.8);
+      Drivetrain.m_robotDrive.arcadeDrive(m_driverController.getLeftX() * 0.68, m_driverController.getLeftY() * 0.8);
     } else {
       // 85% rotation speed, normal base speed
-      m_drivetrain.m_robotDrive.arcadeDrive(m_driverController.getLeftX() * 0.85, m_driverController.getLeftY());
+      Drivetrain.m_robotDrive.arcadeDrive(m_driverController.getLeftX() * 0.85, m_driverController.getLeftY());
     }
   }
 
