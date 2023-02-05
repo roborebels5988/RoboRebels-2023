@@ -1,6 +1,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -29,6 +30,11 @@ public class Drivetrain extends SubsystemBase {
             rightBackPWMVictorSPX);
 
     public final DifferentialDrive m_robotDrive = new DifferentialDrive(left, right);
+
+    public final Encoder LeftEncoder = new Encoder(Constants.EncoderConstants.leftEncoderPortA,
+            Constants.EncoderConstants.leftEncoderPortB);
+    public final Encoder RightEncoder = new Encoder(Constants.EncoderConstants.rightEncoderPortA,
+            Constants.EncoderConstants.rightEncoderPortB);
 
     public CommandBase MethodCommand() {
 

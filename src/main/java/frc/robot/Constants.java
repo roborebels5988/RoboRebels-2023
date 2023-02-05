@@ -25,4 +25,12 @@ public final class Constants {
     public static final short rightFrontMotorPort = 2;
     public static final short rightBackMotorPort = 3;
   }
+
+  public static class EncoderConstants {
+    public static final short leftEncoderPortA = 1;
+    public static final short leftEncoderPortB = 2;
+
+    public static final short rightEncoderPortA = 3;
+    public static final short rightEncoderPortB = 4;
+  }
 }
