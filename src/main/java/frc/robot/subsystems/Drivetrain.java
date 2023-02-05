@@ -31,16 +31,18 @@ public class Drivetrain extends SubsystemBase {
 
         public static final DifferentialDrive m_robotDrive = new DifferentialDrive(left, right);
 
-        public final Encoder LeftEncoder = new Encoder(Constants.EncoderConstants.leftEncoderPortA,
+        public static final Encoder LeftEncoder = new Encoder(Constants.EncoderConstants.leftEncoderPortA,
                         Constants.EncoderConstants.leftEncoderPortB);
-        public final Encoder RightEncoder = new Encoder(Constants.EncoderConstants.rightEncoderPortA,
+        public static final Encoder RightEncoder = new Encoder(Constants.EncoderConstants.rightEncoderPortA,
                         Constants.EncoderConstants.rightEncoderPortB);
 
-        public CommandBase MethodCommand() {
+        public CommandBase Init() {
 
                 return runOnce(
                                 () -> {
-
+                                        // distance per pulse = pi * wheel hub diameter / pulses per revolution
+                                        RightEncoder.setDistancePerPulse(Math.PI * 15.24 / 5);
+                                        LeftEncoder.setDistancePerPulse(Math.PI * 15.24 / 5);
                                 });
         }
 

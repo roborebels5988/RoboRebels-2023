@@ -34,7 +34,7 @@ public class AutoCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (timer.get() <= 2) { // do for two seconds
+    if (timer.get() <= 2) { // move forward for 6 meters
       m_Drivetrain.m_robotDrive.arcadeDrive(0.25, 0);
     } else {
       m_Drivetrain.m_robotDrive.arcadeDrive(0, 0);
