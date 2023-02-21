@@ -31,10 +31,11 @@ public class AutoCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (timer.get() <= 2) { // move forward for 6 meters
-      Drivetrain.m_robotDrive.arcadeDrive(0.25, 0);
-    } else {
-      Drivetrain.m_robotDrive.arcadeDrive(0, 0);
+    Drivetrain m_Drivetrain = new Drivetrain();
+    ManagedStraightDrive m_AutoCommand = new ManagedStraightDrive(m_Drivetrain, 0.25);
+    m_AutoCommand.schedule();
+    if (Drivetrain.LeftEncoder.get() > 6000) { // move forward for 6 meters
+      m_AutoCommand.cancel();
     }
   }
 
