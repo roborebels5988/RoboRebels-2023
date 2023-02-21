@@ -38,7 +38,7 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
 
     Drivetrain m_Drivetrain = new Drivetrain();
-    m_Drivetrain.Init().schedule();
+    Drivetrain.Init();
   }
 
   /**
