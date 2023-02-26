@@ -27,10 +27,10 @@ public final class Constants {
   }
 
   public static class EncoderConstants {
-    public static final short leftEncoderPortA = 1;
-    public static final short leftEncoderPortB = 2;
+    public static final short leftEncoderPortA = 2;
+    public static final short leftEncoderPortB = 3;
 
-    public static final short rightEncoderPortA = 3;
-    public static final short rightEncoderPortB = 4;
+    public static final short rightEncoderPortA = 0;
+    public static final short rightEncoderPortB = 1;
   }
 }
