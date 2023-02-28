@@ -33,4 +33,8 @@ public final class Constants {
     public static final short rightEncoderPortA = 0;
     public static final short rightEncoderPortB = 1;
   }
+
+  public static class WheelConstants {
+    public static final double wheelSize = 15.22;
+  }
 }
