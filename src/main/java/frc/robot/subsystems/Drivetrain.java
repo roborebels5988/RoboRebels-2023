@@ -52,12 +52,12 @@ public class Drivetrain extends SubsystemBase {
                 LeftEncoder.setDistancePerPulse(Math.PI * WheelConstants.wheelSize / 5);
                 LeftEncoder.setReverseDirection(true);
                 gyro.calibrate();
-                ShuffleboardTab MainTab = Shuffleboard.getTab("Main");
-                MainTab.add("Gyro", gyro);
-                MainTab.add("Left Encoder", LeftEncoder);
-                MainTab.add("Right Encoder", RightEncoder);
-                speed = MainTab.add("kmph", 0).getEntry();
-                MainTab.add(m_robotDrive);
+
+                DriverStation.MainTab.add("Gyro", gyro);
+                DriverStation.MainTab.add("Left Encoder", LeftEncoder);
+                DriverStation.MainTab.add("Right Encoder", RightEncoder);
+                speed = DriverStation.MainTab.add("kmph", 0).getEntry();
+                DriverStation.MainTab.add(m_robotDrive);
         };
 
         public boolean Condition() {
