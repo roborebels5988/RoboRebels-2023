@@ -10,7 +10,6 @@ import frc.robot.subsystems.Drivetrain;
 /** An example command that uses an example subsystem. */
 public class ManagedStraightDrive extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
-  private final Drivetrain m_Drivetrain;
   public double speed;
 
   /**
@@ -20,9 +19,7 @@ public class ManagedStraightDrive extends CommandBase {
    */
   public ManagedStraightDrive(Drivetrain drivetrain, double inspeed) {
     speed = inspeed;
-    m_Drivetrain = drivetrain;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(drivetrain);
   }
 
   private double GetDifference(double a, double b) {

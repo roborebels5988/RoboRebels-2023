@@ -10,9 +10,6 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
 
@@ -45,6 +42,10 @@ public class Drivetrain extends SubsystemBase {
         private static GenericEntry speed;
 
         public static final ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
+
+        public static double AverageEncoderDistance() {
+                return LeftEncoder.get() + RightEncoder.get() / 2;
+        }
 
         public static void Init() {
                 // distance per pulse = pi * wheel hub diameter / pulses per revolution
