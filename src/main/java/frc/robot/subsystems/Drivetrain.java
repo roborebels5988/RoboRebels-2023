@@ -18,19 +18,19 @@ public class Drivetrain extends SubsystemBase {
         public Drivetrain() {
         }
 
-        private static final MotorController leftFrontPWMVictorSPX = new WPI_VictorSPX(
+        private static final MotorController leftFrontVictorSPX = new WPI_VictorSPX(
                         MotorConstants.leftFrontMotorPort);
-        private static final MotorController rightFrontPWMVictorSPX = new WPI_VictorSPX(
+        private static final MotorController rightFrontVictorSPX = new WPI_VictorSPX(
                         MotorConstants.rightFrontMotorPort);
-        private static final MotorController leftBackPWMVictorSPX = new WPI_VictorSPX(
+        private static final MotorController leftBackVictorSPX = new WPI_VictorSPX(
                         MotorConstants.leftBackMotorPort);
-        private static final MotorController rightBackPWMVictorSPX = new WPI_VictorSPX(
+        private static final MotorController rightBackVictorSPX = new WPI_VictorSPX(
                         MotorConstants.rightBackMotorPort);
 
-        private static final MotorControllerGroup left = new MotorControllerGroup(leftFrontPWMVictorSPX,
-                        leftBackPWMVictorSPX);
-        private static final MotorControllerGroup right = new MotorControllerGroup(rightFrontPWMVictorSPX,
-                        rightBackPWMVictorSPX);
+        private static final MotorControllerGroup left = new MotorControllerGroup(leftFrontVictorSPX,
+                        leftBackVictorSPX);
+        private static final MotorControllerGroup right = new MotorControllerGroup(rightFrontVictorSPX,
+                        rightBackVictorSPX);
 
         public static final DifferentialDrive m_robotDrive = new DifferentialDrive(left, right);
 
