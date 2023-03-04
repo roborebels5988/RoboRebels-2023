@@ -22,20 +22,21 @@ public class AutoCommand extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
+  Drivetrain m_Drivetrain = new Drivetrain();
+  ManagedStraightDrive m_StraightDrive = new ManagedStraightDrive(m_Drivetrain, 0.25);
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     timer.start();
+    m_StraightDrive.schedule();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Drivetrain m_Drivetrain = new Drivetrain();
-    ManagedStraightDrive m_AutoCommand = new ManagedStraightDrive(m_Drivetrain, 0.25);
-    m_AutoCommand.schedule();
-    if (Drivetrain.LeftEncoder.get() > 6000) { // move forward for 6 meters
-      m_AutoCommand.cancel();
+    if (Drivetrain.AverageEncoderDistance() >= 600) { // move forward for 6 meters
+      m_StraightDrive.cancel();
     }
   }
 
