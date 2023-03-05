@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.ControllerDriveTrain;
+import frc.robot.commands.IntakeManager;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Intake;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,6 +27,7 @@ import frc.robot.subsystems.Drivetrain;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private Command m_ControllerDriveTrain;
+  private Command m_IntakeManager;
 
   private RobotContainer m_robotContainer;
 
@@ -45,6 +48,7 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
 
     Drivetrain.Init();
+    Intake.Init();
     FrontCamera = CameraServer.startAutomaticCapture(0);
     BackCamera = CameraServer.startAutomaticCapture(1);
     server = CameraServer.getServer();
@@ -93,6 +97,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    m_IntakeManager = new IntakeManager();
+    m_IntakeManager.schedule();
   }
 
   /** This function is called periodically during autonomous. */
@@ -111,6 +117,8 @@ public class Robot extends TimedRobot {
     }
     m_ControllerDriveTrain = new ControllerDriveTrain();
     m_ControllerDriveTrain.schedule();
+    m_IntakeManager = new IntakeManager();
+    m_IntakeManager.schedule();
   }
 
   /** This function is called periodically during operator control. */
