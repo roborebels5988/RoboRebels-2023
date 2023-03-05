@@ -46,14 +46,14 @@ public class ManagedStraightDrive extends CommandBase {
     double leftspeed = speed;
     double CorrectionValue = speed * 0.10;
     difference -= 1; // it's okay if it's off by one
-    if (LeftDist - RightDist > 0) { // we are drifting right
-      rightspeed = speed + CorrectionValue * difference;
+    if (LeftDist - RightDist < 0) { // we are drifting right
+      leftspeed = speed + CorrectionValue * difference;
     } else {
-      if (RightDist - LeftDist > 0) { // we are drifting left
-        leftspeed = speed + CorrectionValue * difference;
+      if (RightDist - LeftDist < 0) { // we are drifting left
+        rightspeed = speed + CorrectionValue * difference;
       }
     }
-    Drivetrain.m_robotDrive.tankDrive(leftspeed, rightspeed);
+    Drivetrain.m_robotDrive.tankDrive(leftspeed, -rightspeed);
   }
 
   // Called once the command ends or is interrupted.

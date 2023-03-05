@@ -23,20 +23,23 @@ public class AutoCommand extends CommandBase {
   }
 
   Drivetrain m_Drivetrain = new Drivetrain();
-  ManagedStraightDrive m_StraightDrive = new ManagedStraightDrive(m_Drivetrain, 0.25);
+  ManagedStraightDrive m_StraightDrive = new ManagedStraightDrive(m_Drivetrain, -0.7);
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     timer.start();
     m_StraightDrive.schedule();
+    Drivetrain.LeftEncoder.reset();
+    Drivetrain.RightEncoder.reset();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Drivetrain.AverageEncoderDistance() >= 600) { // move forward for 6 meters
+    if (Drivetrain.AverageEncoderDistance() <= -1150) { // move backwards onto the platform
       m_StraightDrive.cancel();
+      Drivetrain.m_robotDrive.arcadeDrive(0, 0);
     }
   }
 
