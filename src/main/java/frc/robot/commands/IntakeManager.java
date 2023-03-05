@@ -27,7 +27,6 @@ public class IntakeManager extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("WHY NO WORK");
     if (Intake.IntakeMotors.get() == 0) {
       Intake.IntakeMotors.set(-0.1); // ensure motors are always pulling inwards
     }
