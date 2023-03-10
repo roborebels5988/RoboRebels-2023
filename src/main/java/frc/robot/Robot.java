@@ -14,6 +14,7 @@ import frc.robot.commands.ControllerDriveTrain;
 import frc.robot.commands.IntakeManager;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Lighting;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -74,6 +75,7 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    Lighting.lightstrip.setVoltage(5);
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
