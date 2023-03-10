@@ -75,7 +75,7 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    Lighting.lightstrip.setVoltage(5);
+    Lighting.lightstrip.setVoltage(7);
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
