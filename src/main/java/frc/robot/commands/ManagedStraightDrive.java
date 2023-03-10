@@ -53,7 +53,7 @@ public class ManagedStraightDrive extends CommandBase {
         rightspeed = speed + CorrectionValue * difference;
       }
     }
-    Drivetrain.m_robotDrive.tankDrive(leftspeed, -rightspeed);
+    Drivetrain.m_robotDrive.tankDrive(leftspeed + 0.2, rightspeed);
   }
 
   // Called once the command ends or is interrupted.

@@ -38,7 +38,11 @@ public class ControllerDriveTrain extends CommandBase {
       Drivetrain.m_robotDrive.arcadeDrive(m_driverController.getLeftX() * 0.68, m_driverController.getLeftY() * 0.8);
     } else {
       // 85% rotation speed, normal base speed
-      Drivetrain.m_robotDrive.arcadeDrive(m_driverController.getLeftX() * 0.85, m_driverController.getLeftY());
+      if (m_driverController.getLeftX() > 0) {
+        Drivetrain.m_robotDrive.arcadeDrive(m_driverController.getLeftX() * 0.85 + 0.2, m_driverController.getLeftY());
+      } else {
+        Drivetrain.m_robotDrive.arcadeDrive(m_driverController.getLeftX() * 0.85 - 0.2, m_driverController.getLeftY());
+      }
     }
   }
 
