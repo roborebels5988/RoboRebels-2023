@@ -37,11 +37,15 @@ public class AutoCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Drivetrain.AverageEncoderDistance() >= 1150) { // move backwards onto the platform // TODO make positive
-      // m_StraightDrive.cancel();
-      Drivetrain.m_robotDrive.arcadeDrive(0, 0);
-    } else { // TODO remove this
-      Drivetrain.m_robotDrive.arcadeDrive(0.7, 0);
+    if (timer.get() < 1) {
+      Drivetrain.m_robotDrive.tankDrive(0.25, -0.25);
+    } else {
+      if (Drivetrain.AverageEncoderDistance() >= 1150) { // move backwards onto the platform // TODO make positive
+        // m_StraightDrive.cancel();
+        Drivetrain.m_robotDrive.arcadeDrive(0, 0);
+      } else { // TODO remove this
+        Drivetrain.m_robotDrive.tankDrive(-0.7, 0.7);
+      }
     }
   }
 
