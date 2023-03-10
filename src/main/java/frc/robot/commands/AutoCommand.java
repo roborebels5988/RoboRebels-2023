@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -38,13 +39,14 @@ public class AutoCommand extends CommandBase {
   @Override
   public void execute() {
     if (timer.get() < 1) {
-      Drivetrain.m_robotDrive.tankDrive(0.25, -0.25);
+      Drivetrain.m_robotDrive.tankDrive(0.5, -0.5);
+      Intake.IntakeMotors.set(0.5);
     } else {
-      if (Drivetrain.AverageEncoderDistance() >= 1150) { // move backwards onto the platform // TODO make positive
+      if (Drivetrain.AverageEncoderDistance() <= 1150) { // move backwards onto the platform // TODO make positive
         // m_StraightDrive.cancel();
-        Drivetrain.m_robotDrive.arcadeDrive(0, 0);
-      } else { // TODO remove this
         Drivetrain.m_robotDrive.tankDrive(-0.7, 0.7);
+      } else { // TODO remove this
+        Drivetrain.m_robotDrive.tankDrive(0, 0);
       }
     }
   }
