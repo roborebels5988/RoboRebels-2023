@@ -38,13 +38,13 @@ public class AutoCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (timer.get() < 1) {
-      Drivetrain.m_robotDrive.tankDrive(0.5, -0.5);
-      Intake.IntakeMotors.set(0.5);
+    if (timer.get() < 2) {
+      Drivetrain.m_robotDrive.tankDrive(0.7, -0.7);
+      Intake.IntakeMotors.set(-0.75);
     } else {
-      if (Drivetrain.AverageEncoderDistance() <= 1150) { // move backwards onto the platform // TODO make positive
+      if (Drivetrain.AverageEncoderDistance() <= 650) { // move backwards onto the platform // TODO make positive
         // m_StraightDrive.cancel();
-        Drivetrain.m_robotDrive.tankDrive(-0.7, 0.7);
+        Drivetrain.m_robotDrive.tankDrive(-0.6, 0.6);
       } else { // TODO remove this
         Drivetrain.m_robotDrive.tankDrive(0, 0);
       }
