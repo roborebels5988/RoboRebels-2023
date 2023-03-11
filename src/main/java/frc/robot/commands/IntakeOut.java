@@ -27,7 +27,7 @@ public class IntakeOut extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Intake.IntakeMotors.set(0.5);
+    Intake.IntakeMotors.set(-0.75);
   }
 
   // Called once the command ends or is interrupted.

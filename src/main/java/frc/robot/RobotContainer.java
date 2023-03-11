@@ -46,8 +46,8 @@ public class RobotContainer {
    */
 
   private void configureBindings() {
-    A.whileTrue(new IntakeIn());
-    B.whileTrue(new IntakeOut());
+    A.whileTrue(new IntakeOut());
+    B.whileTrue(new IntakeIn());
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is
     // pressed,
