@@ -105,8 +105,6 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.schedule();
     }
     m_IntakeManager = new IntakeManager();
-    // TODO renable this
-    // m_IntakeManager.schedule();
   }
 
   /** This function is called periodically during autonomous. */
