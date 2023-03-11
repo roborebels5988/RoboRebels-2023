@@ -24,7 +24,7 @@ public class AutoCommand extends CommandBase {
   }
 
   Drivetrain m_Drivetrain = new Drivetrain();
-  ManagedStraightDrive m_StraightDrive = new ManagedStraightDrive(m_Drivetrain, -0.7);
+  ManagedStraightDrive m_StraightDrive = new ManagedStraightDrive(m_Drivetrain, -0.6);
 
   // Called when the command is initially scheduled.
   @Override
