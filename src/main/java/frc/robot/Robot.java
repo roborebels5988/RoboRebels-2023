@@ -7,11 +7,14 @@ package frc.robot;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.cscore.VideoSink;
+import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.ControllerDriveTrain;
 import frc.robot.commands.IntakeManager;
+import frc.robot.subsystems.DriverStation;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Lighting;
@@ -40,6 +43,7 @@ public class Robot extends TimedRobot {
   UsbCamera FrontCamera;
   UsbCamera BackCamera;
   VideoSink server;
+  PowerDistribution pd = new PowerDistribution(0, ModuleType.kCTRE);
 
   @Override
   public void robotInit() {
@@ -53,6 +57,7 @@ public class Robot extends TimedRobot {
     FrontCamera = CameraServer.startAutomaticCapture(0);
     BackCamera = CameraServer.startAutomaticCapture(1);
     server = CameraServer.getServer();
+    DriverStation.MainTab.add(pd);
   }
 
   /**
@@ -100,7 +105,8 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.schedule();
     }
     m_IntakeManager = new IntakeManager();
-    m_IntakeManager.schedule();
+    // TODO renable this
+    // m_IntakeManager.schedule();
   }
 
   /** This function is called periodically during autonomous. */
