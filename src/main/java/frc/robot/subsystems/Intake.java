@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.MotorConstants;
-import frc.robot.commands.IntakeManager;
 
 public class Intake extends SubsystemBase {
 
@@ -24,7 +23,6 @@ public class Intake extends SubsystemBase {
   private static final MotorController RightVictorSPX = new WPI_VictorSPX(
       MotorConstants.IntakeRightMotorPort);
   public static final MotorControllerGroup IntakeMotors = new MotorControllerGroup(LeftVictorSPX, RightVictorSPX);
-  private static final IntakeManager m_IntakeManager = new IntakeManager();
 
   /**
    * Example command factory method.

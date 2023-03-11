@@ -16,8 +16,8 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class RobotContainer {
 
-  private final GenericHID m_driverController = new GenericHID(
-      OperatorConstants.kDriverControllerPort);
+  // private final GenericHID m_driverController = new GenericHID(
+  // OperatorConstants.kDriverControllerPort);
 
   private final GenericHID m_subsystemController = new GenericHID(
       OperatorConstants.kSubsystemControllerPort);
