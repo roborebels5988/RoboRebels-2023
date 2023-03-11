@@ -4,9 +4,8 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.networktables.GenericEntry;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -40,8 +39,9 @@ public class Drivetrain extends SubsystemBase {
                         EncoderConstants.rightEncoderPortB);
 
         private static GenericEntry speed;
+        private static GenericEntry dashgyro;
 
-        public static final ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
+        public static final AHRS gyro = new AHRS();
 
         public static double AverageEncoderDistance() {
                 return LeftEncoder.get() + RightEncoder.get() / 2;
@@ -54,7 +54,7 @@ public class Drivetrain extends SubsystemBase {
                 LeftEncoder.setReverseDirection(true);
                 gyro.calibrate();
 
-                DriverStation.MainTab.add("Gyro", gyro);
+                dashgyro = DriverStation.MainTab.add("Gyro", 0).getEntry();
                 DriverStation.MainTab.add("Left Encoder", LeftEncoder);
                 DriverStation.MainTab.add("Right Encoder", RightEncoder);
                 speed = DriverStation.MainTab.add("kmph", 0).getEntry();
@@ -71,6 +71,7 @@ public class Drivetrain extends SubsystemBase {
                 Double AvgSpeedPerSecond = (LeftEncoder.getRate() + RightEncoder.getRate()) / 2;
                 double RoundAvgSpeedPerHour = Math.round(AvgSpeedPerSecond / 27.778);
                 speed.setDouble(RoundAvgSpeedPerHour / 10);
+                dashgyro.setDouble(dashgyro.getDouble(RoundAvgSpeedPerHour) + 1);
         }
 
         @Override
