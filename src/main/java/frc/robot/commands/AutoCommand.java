@@ -41,10 +41,10 @@ public class AutoCommand extends CommandBase {
     if (balanceflag == true) {
       // we are on the charge station, time to balance!
       if (Drivetrain.gyro.getAngle() >= 20) {
-        Drivetrain.m_robotDrive.tankDrive(-0.4, 0.4);
+        Drivetrain.m_robotDrive.tankDrive(0.6, -0.6);
       } else {
         if (Drivetrain.gyro.getAngle() <= -20) {
-          Drivetrain.m_robotDrive.tankDrive(0.4, -0.4);
+          Drivetrain.m_robotDrive.tankDrive(-0.6, 0.6);
         } else {
           Drivetrain.m_robotDrive.tankDrive(0, 0);
         }
@@ -53,7 +53,7 @@ public class AutoCommand extends CommandBase {
       // we are not yet on the charge station
       if (timer.get() < 2) {
         // move backwards for the first 2 seconds
-        Drivetrain.m_robotDrive.tankDrive(0.7, -0.7);
+        // Drivetrain.m_robotDrive.tankDrive(0.7, -0.7);
         Intake.IntakeMotors.set(-0.75);
       } else {
         if (Drivetrain.AverageEncoderDistance() <= 650) {
