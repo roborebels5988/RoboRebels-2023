@@ -71,7 +71,7 @@ public class Drivetrain extends SubsystemBase {
                 Double AvgSpeedPerSecond = (LeftEncoder.getRate() + RightEncoder.getRate()) / 2;
                 double RoundAvgSpeedPerHour = Math.round(AvgSpeedPerSecond / 27.778);
                 speed.setDouble(RoundAvgSpeedPerHour / 10);
-                dashgyro.setDouble(dashgyro.getDouble(RoundAvgSpeedPerHour) + 1);
+                dashgyro.setFloat(gyro.getFusedHeading());
         }
 
         @Override
