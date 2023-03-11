@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /** An example command that uses an example subsystem. */
 public class AutoCommand extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
-  private Timer timer = new Timer();
 
   /**
    * Creates a new ExampleCommand.
@@ -24,7 +23,8 @@ public class AutoCommand extends CommandBase {
   }
 
   Drivetrain m_Drivetrain = new Drivetrain();
-  ManagedStraightDrive m_StraightDrive = new ManagedStraightDrive(m_Drivetrain, -0.6);
+  private Timer timer = new Timer();
+  private boolean balanceflag = false;
 
   // Called when the command is initially scheduled.
   @Override
@@ -38,16 +38,31 @@ public class AutoCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (timer.get() < 2) {
-      Drivetrain.m_robotDrive.tankDrive(0.7, -0.7);
-      Intake.IntakeMotors.set(-0.75);
+    if (balanceflag == true) {
+      // we are on the charge station, time to balance!
+      if (Drivetrain.gyro.getAngle() >= 20) {
+        Drivetrain.m_robotDrive.tankDrive(-0.4, 0.4);
+      } else {
+        if (Drivetrain.gyro.getAngle() <= -20) {
+          Drivetrain.m_robotDrive.tankDrive(0.4, -0.4);
+        } else {
+          Drivetrain.m_robotDrive.tankDrive(0, 0);
+        }
+      }
     } else {
-      if (Drivetrain.AverageEncoderDistance() <= 800) { // move backwards onto the platform, ~650-800 = charge, 1300 =
-                                                        // community
-        // m_StraightDrive.cancel();
-        Drivetrain.m_robotDrive.tankDrive(-0.6, 0.6);
-      } else { // TODO remove this
-        Drivetrain.m_robotDrive.tankDrive(0, 0);
+      // we are not yet on the charge station
+      if (timer.get() < 2) {
+        // move backwards for the first 2 seconds
+        Drivetrain.m_robotDrive.tankDrive(0.7, -0.7);
+        Intake.IntakeMotors.set(-0.75);
+      } else {
+        if (Drivetrain.AverageEncoderDistance() <= 650) {
+          // move backwards onto the platform
+          Drivetrain.m_robotDrive.tankDrive(-0.6, 0.6);
+        } else {
+          // if all of these are false, it's time to get to balancing!
+          balanceflag = true;
+        }
       }
     }
   }
