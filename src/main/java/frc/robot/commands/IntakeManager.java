@@ -28,7 +28,7 @@ public class IntakeManager extends CommandBase {
   @Override
   public void execute() {
     if (Intake.IntakeMotors.get() == 0) {
-      Intake.IntakeMotors.set(-0.1); // ensure motors are always pulling inwards
+      Intake.IntakeMotors.set(-0.0); // ensure motors are always pulling inwards
     }
   }
 
