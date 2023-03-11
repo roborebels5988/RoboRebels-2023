@@ -42,7 +42,8 @@ public class AutoCommand extends CommandBase {
       Drivetrain.m_robotDrive.tankDrive(0.7, -0.7);
       Intake.IntakeMotors.set(-0.75);
     } else {
-      if (Drivetrain.AverageEncoderDistance() <= 650) { // move backwards onto the platform // TODO make positive
+      if (Drivetrain.AverageEncoderDistance() <= 800) { // move backwards onto the platform, ~650-800 = charge, 1300 =
+                                                        // community
         // m_StraightDrive.cancel();
         Drivetrain.m_robotDrive.tankDrive(-0.6, 0.6);
       } else { // TODO remove this
