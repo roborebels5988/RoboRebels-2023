@@ -40,11 +40,11 @@ public class AutoCommand extends CommandBase {
   public void execute() {
     if (balanceflag == true) {
       // we are on the charge station, time to balance!
-      if (Drivetrain.gyro.getPitch() >= 13) {
-        Drivetrain.m_robotDrive.tankDrive(-0.4, 0.4);
+      if (Drivetrain.gyro.getPitch() >= 11) {
+        Drivetrain.m_robotDrive.tankDrive(-0.6, 0.6);
       } else {
-        if (Drivetrain.gyro.getPitch() <= -13) {
-          Drivetrain.m_robotDrive.tankDrive(0.4, -0.4);
+        if (Drivetrain.gyro.getPitch() <= -11) {
+          Drivetrain.m_robotDrive.tankDrive(0.5, -0.5);
         } else {
           Drivetrain.m_robotDrive.tankDrive(0, 0);
         }
@@ -58,7 +58,7 @@ public class AutoCommand extends CommandBase {
       } else {
         if (Drivetrain.AverageEncoderDistance() <= 700) {
           // move backwards onto the platform
-          Drivetrain.m_robotDrive.tankDrive(-0.9, 0.9);
+          Drivetrain.m_robotDrive.tankDrive(-0.8, 0.8);
         } else {
           // if all of these are false, it's time to get to balancing!
           balanceflag = true;
