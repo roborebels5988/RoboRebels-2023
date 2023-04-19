@@ -81,6 +81,10 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     Lighting.lightstrip.setVoltage(7);
+    Double AvgSpeedPerSecond = (Drivetrain.LeftEncoder.getRate() + Drivetrain.RightEncoder.getRate()) / 2;
+    double RoundAvgSpeedPerHour = Math.round(AvgSpeedPerSecond / 27.778);
+    Drivetrain.speed.setDouble(RoundAvgSpeedPerHour / 10);
+    Drivetrain.dashgyro.setFloat(Drivetrain.gyro.getRoll());
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

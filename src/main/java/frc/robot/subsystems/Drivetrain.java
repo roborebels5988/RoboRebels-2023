@@ -34,8 +34,8 @@ public class Drivetrain extends SubsystemBase {
       EncoderConstants.leftEncoderPortB);
   public static final Encoder RightEncoder = new Encoder(EncoderConstants.rightEncoderPortA,
       EncoderConstants.rightEncoderPortB);
-  private static GenericEntry speed;
-  private static GenericEntry dashgyro;
+  public static GenericEntry speed;
+  public static GenericEntry dashgyro;
   public static final AHRS gyro = new AHRS();
 
   public static double AverageEncoderDistance() {
@@ -61,10 +61,7 @@ public class Drivetrain extends SubsystemBase {
 
   @Override
   public void periodic() {
-    Double AvgSpeedPerSecond = (LeftEncoder.getRate() + RightEncoder.getRate()) / 2;
-    double RoundAvgSpeedPerHour = Math.round(AvgSpeedPerSecond / 27.778);
-    speed.setDouble(RoundAvgSpeedPerHour / 10);
-    dashgyro.setFloat(gyro.getPitch());
+
   }
 
   @Override

@@ -40,10 +40,10 @@ public class AutoCommand extends CommandBase {
   public void execute() {
     if (balanceflag == true) {
       // we are on the charge station, time to balance!
-      if (Drivetrain.gyro.getPitch() >= 11) {
+      if (Drivetrain.gyro.getRoll() >= 11) {
         Drivetrain.m_robotDrive.tankDrive(-0.6, 0.6);
       } else {
-        if (Drivetrain.gyro.getPitch() <= -11) {
+        if (Drivetrain.gyro.getRoll() <= -11) {
           Drivetrain.m_robotDrive.tankDrive(0.5, -0.5);
         } else {
           Drivetrain.m_robotDrive.tankDrive(0, 0);
