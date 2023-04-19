@@ -39,8 +39,6 @@ public class Intake extends SubsystemBase {
   }
 
   public static void Init() {
-    RightVictorSPX.setInverted(true);
-    // m_IntakeManager.schedule();
   }
 
   /**

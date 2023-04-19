@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.ControllerDriveTrain;
-import frc.robot.commands.IntakeManager;
 import frc.robot.subsystems.DriverStation;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
@@ -31,7 +30,6 @@ import frc.robot.subsystems.Lighting;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private Command m_ControllerDriveTrain;
-  private Command m_IntakeManager;
 
   private RobotContainer m_robotContainer;
 
@@ -108,7 +106,6 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-    m_IntakeManager = new IntakeManager();
   }
 
   /** This function is called periodically during autonomous. */
@@ -127,8 +124,6 @@ public class Robot extends TimedRobot {
     }
     m_ControllerDriveTrain = new ControllerDriveTrain();
     m_ControllerDriveTrain.schedule();
-    m_IntakeManager = new IntakeManager();
-    m_IntakeManager.schedule();
   }
 
   /** This function is called periodically during operator control. */
