@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import frc.robot.subsystems.DriverStation;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj.Timer;
@@ -25,7 +26,7 @@ public class AutoCommand extends CommandBase {
   Drivetrain m_Drivetrain = new Drivetrain();
   private Timer timer = new Timer();
   private boolean balanceflag = false;
-  private boolean balanceEnabled = true;
+  private boolean balanceEnabled = DriverStation.autoChargeStation.getBoolean(true);
 
   // Called when the command is initially scheduled.
   @Override
@@ -55,8 +56,7 @@ public class AutoCommand extends CommandBase {
       } else {
         // we are not yet on the charge station
         if (timer.get() < 2) {
-          // move backwards for the first 2 seconds
-          // Drivetrain.m_robotDrive.tankDrive(0.7, -0.7);
+          Drivetrain.m_robotDrive.tankDrive(0, 0);
           Intake.IntakeMotors.set(-0.75);
         } else {
           if (Drivetrain.AverageEncoderDistance() <= 700) {
@@ -73,9 +73,10 @@ public class AutoCommand extends CommandBase {
         // move backwards for the first 2 seconds
         // Drivetrain.m_robotDrive.tankDrive(0.7, -0.7);
         Intake.IntakeMotors.set(-0.75);
+        Drivetrain.m_robotDrive.tankDrive(0, 0);
       } else {
         Intake.IntakeMotors.set(0);
-        if (Drivetrain.AverageEncoderDistance() <= 2000) { // TODO work out the correct distance
+        if (Drivetrain.AverageEncoderDistance() <= 1000) { // TODO work out the correct distance
           // move backwards out of the community
           Drivetrain.m_robotDrive.tankDrive(-0.8, 0.8);
         } else {

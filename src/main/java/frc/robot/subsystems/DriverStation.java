@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -31,6 +32,8 @@ public class DriverStation extends SubsystemBase {
   }
 
   public static ShuffleboardTab MainTab = Shuffleboard.getTab("Main");
+
+  public static GenericEntry autoChargeStation = MainTab.add("Dock to the station", true).getEntry();
 
   public static void init() {
 
