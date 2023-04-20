@@ -7,13 +7,13 @@ package frc.robot.commands;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 
 /** An example command that uses an example subsystem. */
 public class ControllerDriveTrain extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
 
-  private final CommandXboxController m_driverController = new CommandXboxController(
+  private final CommandJoystick m_driverController = new CommandJoystick(
       OperatorConstants.kDriverControllerPort);
 
   /**
@@ -33,15 +33,15 @@ public class ControllerDriveTrain extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_driverController.getHID().getYButton()) {
+    if (m_driverController.getHID().getRawButton(2)) {
       // about half speed
-      Drivetrain.m_robotDrive.arcadeDrive(m_driverController.getLeftX() * 0.68, m_driverController.getLeftY() * 0.8);
+      Drivetrain.m_robotDrive.arcadeDrive(m_driverController.getX() * 0.68, m_driverController.getY() * 0.8);
     } else {
       // 85% rotation speed, normal base speed
-      if (m_driverController.getLeftX() > 0) {
-        Drivetrain.m_robotDrive.arcadeDrive(m_driverController.getLeftX() * 0.85, m_driverController.getLeftY());
+      if (m_driverController.getX() > 0) {
+        Drivetrain.m_robotDrive.arcadeDrive(m_driverController.getX() * 0.85, m_driverController.getY());
       } else {
-        Drivetrain.m_robotDrive.arcadeDrive(m_driverController.getLeftX() * 0.85, m_driverController.getLeftY());
+        Drivetrain.m_robotDrive.arcadeDrive(m_driverController.getX() * 0.85, m_driverController.getY());
       }
     }
   }
