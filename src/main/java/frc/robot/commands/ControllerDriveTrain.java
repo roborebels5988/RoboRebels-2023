@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.Drivetrain;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 
@@ -15,6 +16,8 @@ public class ControllerDriveTrain extends CommandBase {
 
   private final CommandJoystick m_driverController = new CommandJoystick(
       OperatorConstants.kDriverControllerPort);
+  private final GenericHID m_subsystemController = new GenericHID(
+      OperatorConstants.kSubsystemControllerPort);
 
   /**
    * Creates a new ExampleCommand.
@@ -33,7 +36,7 @@ public class ControllerDriveTrain extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_driverController.getHID().getRawButton(2)) {
+    if (m_driverController.getHID().getRawButton(2) | m_subsystemController.getRawButton(5)) {
       // about half speed
       Drivetrain.m_robotDrive.arcadeDrive(m_driverController.getX() * 0.68, m_driverController.getY() * 0.8);
     } else {
