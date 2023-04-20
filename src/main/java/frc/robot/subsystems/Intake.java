@@ -22,7 +22,7 @@ public class Intake extends SubsystemBase {
       MotorConstants.IntakeLeftMotorPort);
   private static final MotorController RightVictorSPX = new WPI_VictorSPX(
       MotorConstants.IntakeRightMotorPort);
-  public static final MotorControllerGroup IntakeMotors = new MotorControllerGroup(LeftVictorSPX, RightVictorSPX);
+  public static MotorControllerGroup IntakeMotors;
 
   /**
    * Example command factory method.
@@ -39,6 +39,8 @@ public class Intake extends SubsystemBase {
   }
 
   public static void Init() {
+    RightVictorSPX.setInverted(true);
+    IntakeMotors = new MotorControllerGroup(LeftVictorSPX, RightVictorSPX);
   }
 
   /**
