@@ -76,7 +76,7 @@ public class AutoCommand extends CommandBase {
         Drivetrain.m_robotDrive.tankDrive(0, 0);
       } else {
         Intake.IntakeMotors.set(0);
-        if (Drivetrain.AverageEncoderDistance() <= 1000) { // TODO work out the correct distance
+        if (Drivetrain.AverageEncoderDistance() <= 1500) { // TODO work out the correct distance
           // move backwards out of the community
           Drivetrain.m_robotDrive.tankDrive(-0.8, 0.8);
         } else {
