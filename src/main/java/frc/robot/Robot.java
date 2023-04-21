@@ -53,6 +53,7 @@ public class Robot extends TimedRobot {
     Drivetrain.Init();
     Intake.Init();
 
+    DriverStation.Init();
     FrontCamera = CameraServer.startAutomaticCapture(0);
     BackCamera = CameraServer.startAutomaticCapture(1);
     server = CameraServer.getServer();

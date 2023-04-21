@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriverStation extends SubsystemBase {
@@ -33,10 +34,15 @@ public class DriverStation extends SubsystemBase {
 
   public static ShuffleboardTab MainTab = Shuffleboard.getTab("Main");
 
-  public static GenericEntry autoChargeStation = MainTab.add("Dock to the station", true).getEntry();
+  public static SendableChooser<String> autopicker = new SendableChooser<String>();
 
-  public static void init() {
+  public static GenericEntry autoPickerEntry;
 
+  public static void Init() {
+    autopicker.addOption("balance", "balance");
+    autopicker.addOption("short side move", "short side move");
+    autopicker.addOption("long side move", "long side move");
+    MainTab.add(autopicker);
   }
 
   @Override

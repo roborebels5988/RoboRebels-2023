@@ -26,7 +26,7 @@ public class AutoCommand extends CommandBase {
   Drivetrain m_Drivetrain = new Drivetrain();
   private Timer timer = new Timer();
   private boolean balanceflag = false;
-  private boolean balanceEnabled = DriverStation.autoChargeStation.getBoolean(true);
+  private String mode = DriverStation.autopicker.getSelected();
 
   // Called when the command is initially scheduled.
   @Override
@@ -40,47 +40,62 @@ public class AutoCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (balanceEnabled) {
-      if (balanceflag == true) {
-        Intake.IntakeMotors.set(0);
-        // we are on the charge station, time to balance!
-        if (Drivetrain.gyro.getRoll() >= 11) {
-          Drivetrain.m_robotDrive.tankDrive(-0.62, 0.62);
+    switch (mode) {
+      case "balance": {
+        if (balanceflag == true) {
+          Intake.IntakeMotors.set(0);
+          // we are on the charge station, time to balance!
+          if (Drivetrain.gyro.getRoll() >= 11) {
+            Drivetrain.m_robotDrive.tankDrive(-0.62, 0.62);
+          } else {
+            if (Drivetrain.gyro.getRoll() <= -11) {
+              Drivetrain.m_robotDrive.tankDrive(0.62, -0.62);
+            } else {
+              Drivetrain.m_robotDrive.tankDrive(0, 0);
+            }
+          }
         } else {
-          if (Drivetrain.gyro.getRoll() <= -11) {
-            Drivetrain.m_robotDrive.tankDrive(0.62, -0.62);
+          // we are not yet on the charge station
+          if (timer.get() < 2) {
+            Drivetrain.m_robotDrive.tankDrive(0, 0);
+            Intake.IntakeMotors.set(-0.75);
+          } else {
+            if (Drivetrain.AverageEncoderDistance() <= 700) {
+              // move backwards onto the platform
+              Drivetrain.m_robotDrive.tankDrive(-0.8, 0.8);
+            } else {
+              // if all of these are false, it's time to get to balancing!
+              balanceflag = true;
+            }
+          }
+        }
+      }
+      case "short side move": {
+        if (timer.get() < 2) {
+          Intake.IntakeMotors.set(-0.75);
+          Drivetrain.m_robotDrive.tankDrive(0, 0);
+        } else {
+          Intake.IntakeMotors.set(0);
+          if (Drivetrain.AverageEncoderDistance() <= 1400) { // TODO work out the correct distance
+            // move backwards out of the community
+            Drivetrain.m_robotDrive.tankDrive(-0.8, 0.8);
           } else {
             Drivetrain.m_robotDrive.tankDrive(0, 0);
           }
         }
-      } else {
-        // we are not yet on the charge station
+      }
+      case "long side move": {
         if (timer.get() < 2) {
-          Drivetrain.m_robotDrive.tankDrive(0, 0);
           Intake.IntakeMotors.set(-0.75);
+          Drivetrain.m_robotDrive.tankDrive(0, 0);
         } else {
-          if (Drivetrain.AverageEncoderDistance() <= 700) {
-            // move backwards onto the platform
+          Intake.IntakeMotors.set(0);
+          if (Drivetrain.AverageEncoderDistance() <= 1750) { // TODO work out the correct distance
+            // move backwards out of the community
             Drivetrain.m_robotDrive.tankDrive(-0.8, 0.8);
           } else {
-            // if all of these are false, it's time to get to balancing!
-            balanceflag = true;
+            Drivetrain.m_robotDrive.tankDrive(0, 0);
           }
-        }
-      }
-    } else { // if we are not balancing
-      if (timer.get() < 2) {
-        // move backwards for the first 2 seconds
-        // Drivetrain.m_robotDrive.tankDrive(0.7, -0.7);
-        Intake.IntakeMotors.set(-0.75);
-        Drivetrain.m_robotDrive.tankDrive(0, 0);
-      } else {
-        Intake.IntakeMotors.set(0);
-        if (Drivetrain.AverageEncoderDistance() <= 1500) { // TODO work out the correct distance
-          // move backwards out of the community
-          Drivetrain.m_robotDrive.tankDrive(-0.8, 0.8);
-        } else {
-          Drivetrain.m_robotDrive.tankDrive(0, 0);
         }
       }
     }
