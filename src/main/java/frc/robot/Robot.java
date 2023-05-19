@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.ControllerDriveTrain;
 import frc.robot.subsystems.DriverStation;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Lighting;
 
 /**
@@ -51,7 +50,6 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
 
     Drivetrain.Init();
-    Intake.Init();
 
     DriverStation.Init();
     FrontCamera = CameraServer.startAutomaticCapture(0);

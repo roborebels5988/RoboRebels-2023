@@ -6,7 +6,6 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.DriverStation;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -43,7 +42,6 @@ public class AutoCommand extends CommandBase {
     switch (mode) {
       case "balance": {
         if (balanceflag == true) {
-          Intake.IntakeMotors.set(0);
           // we are on the charge station, time to balance!
           if (Drivetrain.gyro.getRoll() >= 11) {
             Drivetrain.m_robotDrive.tankDrive(-0.62, 0.62);
@@ -58,7 +56,6 @@ public class AutoCommand extends CommandBase {
           // we are not yet on the charge station
           if (timer.get() < 2) {
             Drivetrain.m_robotDrive.tankDrive(0, 0);
-            Intake.IntakeMotors.set(-0.75);
           } else {
             if (Drivetrain.AverageEncoderDistance() <= 700) {
               // move backwards onto the platform
@@ -72,10 +69,8 @@ public class AutoCommand extends CommandBase {
       }
       case "short side move": {
         if (timer.get() < 2) {
-          Intake.IntakeMotors.set(-0.75);
           Drivetrain.m_robotDrive.tankDrive(0, 0);
         } else {
-          Intake.IntakeMotors.set(0);
           if (Drivetrain.AverageEncoderDistance() <= 1400) { // TODO work out the correct distance
             // move backwards out of the community
             Drivetrain.m_robotDrive.tankDrive(-0.8, 0.8);
@@ -86,10 +81,8 @@ public class AutoCommand extends CommandBase {
       }
       case "long side move": {
         if (timer.get() < 2) {
-          Intake.IntakeMotors.set(-0.75);
           Drivetrain.m_robotDrive.tankDrive(0, 0);
         } else {
-          Intake.IntakeMotors.set(0);
           if (Drivetrain.AverageEncoderDistance() <= 1750) { // TODO work out the correct distance
             // move backwards out of the community
             Drivetrain.m_robotDrive.tankDrive(-0.8, 0.8);

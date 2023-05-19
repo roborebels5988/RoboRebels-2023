@@ -6,8 +6,6 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.AutoCommand;
-import frc.robot.commands.IntakeIn;
-import frc.robot.commands.IntakeOut;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -46,8 +44,6 @@ public class RobotContainer {
    */
 
   private void configureBindings() {
-    A.whileTrue(new IntakeOut());
-    B.whileTrue(new IntakeIn());
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is
     // pressed,

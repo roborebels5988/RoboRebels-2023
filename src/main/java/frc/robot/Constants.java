@@ -24,9 +24,6 @@ public final class Constants {
     public static final short leftBackMotorPort = 1;
     public static final short rightFrontMotorPort = 2;
     public static final short rightBackMotorPort = 3;
-
-    public static final short IntakeLeftMotorPort = 5;
-    public static final short IntakeRightMotorPort = 6;
   }
 
   public static class EncoderConstants {
